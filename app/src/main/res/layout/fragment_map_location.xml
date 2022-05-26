@@ -1,0 +1,524 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="fragmentMapViewModel"
+            type="com.mvl.mvl_assignment.ui.viewmodel.MapFragmentViewModel" />
+    </data>
+
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:focusableInTouchMode="true">
+
+        <RelativeLayout
+            android:id="@+id/rl_map_parent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appbar_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:theme="@style/Theme.MVL_Assignment">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="#fff"
+                    app:popupTheme="@style/Theme.MVL_Assignment">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/iv_back"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_30sdp"
+                        app:srcCompat="@drawable/car_icon" />
+
+                    <TextView
+                        android:layout_width="180dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:gravity="left|center"
+                        android:text="@string/map"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right|center"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+
+                        android:background="@color/white"
+                        android:gravity="right"
+                        android:padding="@dimen/_14sdp"
+                        android:text="@{fragmentMapViewModel.airQualityValue}" />
+
+                </androidx.appcompat.widget.Toolbar>
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <ScrollView
+                android:id="@+id/scroll_view_address"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_above="@id/btn_proceed"
+                android:layout_below="@id/appbar_layout"
+                android:fillViewport="true">
+
+                <LinearLayout
+                    android:id="@+id/ll_map_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:orientation="vertical">
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="350dp"
+                        android:padding="@dimen/_6sdp">
+
+                        <fragment
+                            android:id="@+id/map"
+                            android:name="com.mvl.mvl_assignment.maphelper.map.SupportMapFragmentWithScrollView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+
+                        <ImageView
+                            android:id="@+id/imv_map_marker_temp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:contentDescription="@string/map_marker"
+                            android:paddingBottom="@dimen/_14sdp"
+                            android:visibility="gone"
+                            app:srcCompat="@drawable/ic_map_marker" />
+
+
+                        <!--
+                        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_below="@+id/ll_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            card_view:cardCornerRadius="5dp"
+            card_view:cardElevation="10dp"
+            card_view:cardMaxElevation="10dp"
+            android:layout_margin="50dp">
+
+        <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+            android:id="@+id/auto_complete_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:background="@color/white"
+            android:drawableEnd="@drawable/ic_search_symbol_with_bg"
+            android:inputType="text"
+            android:paddingLeft="20dp"
+            android:maxLines="1" />
+
+        </androidx.cardview.widget.CardView>
+        -->
+                        <!--
+                                            <androidx.cardview.widget.CardView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="40dp"
+                                                android:layout_marginStart="@dimen/margin_medium"
+                                                android:layout_marginTop="10dp"
+                                                android:layout_marginEnd="@dimen/seventy_dp"
+                                                android:layout_marginBottom="@dimen/margin_small"
+                                                android:background="@color/white"
+                                                android:orientation="vertical">
+
+                                                <fragment
+                                                    android:id="@+id/autocomplete_fragment"
+                                                    android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    />
+                                            </androidx.cardview.widget.CardView>-->
+
+
+
+
+                        <androidx.cardview.widget.CardView
+                                android:id="@+id/cardView"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="70dp"
+                                tools:cardCornerRadius="5dp"
+                                tools:cardElevation="10dp"
+                                tools:cardMaxElevation="10dp">
+
+
+                                <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                                    android:id="@+id/map_auto_complete_edit_text"
+                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@color/white"
+                                    android:drawableEnd="@drawable/search_map"
+                                    android:drawableRight="@drawable/search_map"
+                                    android:focusable="false"
+                                    android:hint="Search"
+                                    android:inputType="text"
+                                    android:maxLines="1"
+                                    android:paddingLeft="20dp" />
+
+
+
+
+                            </androidx.cardview.widget.CardView>
+
+
+
+
+
+
+
+                    </RelativeLayout>
+
+                    <ProgressBar
+                        android:id="@+id/progress_map"
+                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:indeterminate="true"
+                        android:progressBackgroundTint="@color/colorPrimary"
+                        android:visibility="invisible" />
+
+                    <!--<com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_city"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_18sdp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="@dimen/_18sdp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@color/white">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_city"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:enabled="true"
+                            android:focusableInTouchMode="true"
+                            android:gravity="top"
+                            android:hint="@string/city"
+                            android:imeOptions="actionNext"
+                            android:inputType="textCapWords|textMultiLine"
+                            android:textSize="@dimen/_14sdp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>-->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_address"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginEnd="@dimen/_20sdp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@color/white">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_address"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:enabled="true"
+                            android:gravity="top"
+                            android:hint="@string/address"
+                            android:imeOptions="actionDone"
+                            android:inputType="textCapSentences|textMultiLine"
+                            android:maxLength="150"
+                            android:maxLines="3"
+                            android:textSize="@dimen/_12sdp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginTop="5dp"
+                        app:touchListener="@{true}"
+                        android:drawableRight="@drawable/ic_back_32"
+                        android:layout_marginEnd="@dimen/_20sdp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@color/hash"
+                        android:padding="@dimen/_13sdp"
+                        android:text="@{fragmentMapViewModel.valueALocation}"
+                        android:textColor="@color/black" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginTop="5dp"
+                        app:touchBListener="@{true}"
+                        android:drawableRight="@drawable/ic_back_32"
+                        android:layout_marginEnd="@dimen/_20sdp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@color/hash"
+                        android:padding="@dimen/_13sdp"
+                        android:text="@{fragmentMapViewModel.valueBLocation}"
+                        android:textColor="@color/black" />
+
+
+                    <!--     <com.google.android.material.textfield.TextInputLayout
+                             android:id="@+id/til_locality"
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:layout_marginStart="@dimen/_18sdp"
+                             android:layout_marginTop="5dp"
+                             android:layout_marginEnd="@dimen/twenty_dp"
+                             android:layout_marginBottom="5dp"
+                             android:background="@color/white"
+                             android:clickable="true"
+                             android:cursorVisible="true"
+                             android:focusable="true"
+                             android:focusableInTouchMode="true"
+                             android:inputType="none">
+
+                             <com.google.android.material.textfield.TextInputEditText
+                                 android:id="@+id/et_locality"
+                                 android:layout_width="match_parent"
+                                 android:layout_height="wrap_content"
+                                 android:enabled="true"
+                                 android:focusableInTouchMode="true"
+                                 android:gravity="top"
+                                 android:hint="@string/locality"
+                                 android:imeOptions="actionNext"
+                                 android:textSize="@dimen/_14sdp" />
+                         </com.google.android.material.textfield.TextInputLayout>-->
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_pincode"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/twenty_dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="@dimen/twenty_dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@color/white"
+                        android:visibility="gone">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_pincode"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:digits="0123456789"
+                            android:enabled="false"
+                            android:gravity="top"
+                            android:hint="@string/pincode"
+                            android:imeOptions="actionDone"
+                            android:inputType="number"
+                            android:maxLength="6"
+                            android:textSize="@dimen/_14sdp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_marginBottom="@dimen/_20sdp">
+
+                        <!--<androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_home"
+                            android:layout_width="@dimen/_50sdp"
+                            android:layout_height="@dimen/_30sdp"
+                            android:layout_marginEnd="@dimen/_20sdp"
+                            android:background="@drawable/map_bg_corner"
+                            android:gravity="center_vertical|center"
+                            android:text="Home"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/tv_office"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintHorizontal_chainStyle="packed"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_office"
+                            android:layout_width="@dimen/_50sdp"
+                            android:layout_height="@dimen/_30sdp"
+                            android:layout_marginEnd="@dimen/_20sdp"
+                            android:background="@drawable/map_bg_corner"
+                            android:gravity="center_vertical|center"
+                            android:text="Office"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/tv_others"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toEndOf="@+id/tv_home"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_others"
+                            android:layout_width="@dimen/_50sdp"
+                            android:layout_height="@dimen/_30sdp"
+                            android:layout_marginEnd="@dimen/_20sdp"
+                            android:background="@drawable/map_bg_corner"
+                            android:gravity="center_vertical|center"
+                            android:text="Others"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toEndOf="@+id/tv_office"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.0" />-->
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </LinearLayout>
+            </ScrollView>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_proceed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="@color/colorPrimary"
+                android:letterSpacing="0"
+                android:onClick="@{(view) -> fragmentMapViewModel.onClickChange()}"
+                android:text="@{fragmentMapViewModel.btnTextChange}"
+                android:textAllCaps="false"
+                android:textColor="@color/white" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:background="#B3ffffff"
+            android:visibility="@{fragmentMapViewModel.isLoading ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true" />
+
+        </RelativeLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+
+
+    <!--<androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+
+        <fragment
+            android:id="@+id/mapView"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="@dimen/_12sdp"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_air_quality_value"
+            />
+
+        &lt;!&ndash;<com.google.android.gms.maps.MapView
+            android:id="@+id/mapView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_air_quality_value" />&ndash;&gt;
+
+        <TextView
+            android:id="@+id/tv_air_quality_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_25sdp"
+            android:text="Air Quality Value"
+            app:layout_constraintBottom_toTopOf="@+id/mapView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_15sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mapView"
+            app:layout_constraintVertical_bias="0.0">
+
+            <TextView
+                android:id="@+id/tv_set_a"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_15sdp"
+                android:padding="@dimen/_10sdp"
+                android:text="SetA"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/_15sdp"
+                app:layout_constraintEnd_toStartOf="@+id/btn_v"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_set_b"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_15sdp"
+                android:padding="@dimen/_10sdp"
+                android:text="SetB"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/_15sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btn_v"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_set_a"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_v"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_25sdp"
+                android:background="@color/blue"
+                android:contentDescription="@string/btn_v"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="SetA"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_15sdp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_set_b"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_set_a"
+                app:layout_constraintVertical_bias="0.1" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>-->
+</layout>

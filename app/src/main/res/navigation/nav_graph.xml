@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/map_fragment">
+
+    <fragment
+        android:id="@+id/map_fragment"
+        android:name="com.mvl.mvl_assignment.ui.view.fragments.MapLocationFragment"
+        android:label="google map location"
+        tools:layout="@layout/fragment_map_location">
+        <action
+            android:id="@+id/action_nick_name_fragment"
+            app:destination="@id/nickname_fragment">
+            <argument
+                android:name="labelName"
+                app:argType="string"/>
+            <!--<argument
+                android:name="nickname_details"
+                app:argType="com.prasan.kotlinmvvmhiltflowapp.data.datamodel.PhotoDetails" />-->
+        </action>
+        <action
+            android:id="@+id/action_map_fragment_to_book_fragment"
+            app:destination="@id/book_fragment"
+            app:launchSingleTop="true"
+            >
+            <argument
+                android:name="id"
+                app:argType="string"/>
+        </action>
+
+        <action
+            android:id="@+id/action_book_list_fragment"
+            app:destination="@id/book_list_fragment"
+            app:launchSingleTop="true"
+            >
+            <argument
+                android:name="fragment_name"
+                app:argType="string"
+                />
+
+            <argument
+                android:name="location_type"
+                app:argType="string"
+                />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/nickname_fragment"
+        android:name="com.mvl.mvl_assignment.ui.view.fragments.LocationNickNameFragment"
+        android:label="Nick Name"
+        tools:layout="@layout/fragment_location_nick_name">
+        <action
+            android:id="@+id/action_map_fragment"
+            app:destination="@id/map_fragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/map_fragment"
+            app:popUpToInclusive="true" >
+        <argument
+            android:name="labelName"
+            app:argType="string"/>
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/book_fragment"
+        android:name="com.mvl.mvl_assignment.ui.view.fragments.RequestBookFragment"
+        android:label="Request Book Fragment"
+        tools:layout="@layout/fragment_request__book_"
+        >
+        <action
+            android:id="@+id/action_list_fragment"
+            app:destination="@id/book_list_fragment"
+             >
+            <argument
+                android:name="fragment_name"
+                app:argType="string"
+                />
+        </action>
+
+        <action
+            android:id="@+id/action_map_fragment"
+            app:destination="@id/map_fragment"
+            app:launchSingleTop="true"/>
+
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/book_list_fragment"
+        android:name="com.mvl.mvl_assignment.ui.view.fragments.GetYearlistFragment"
+        android:label="List Book"
+        tools:layout="@layout/fragment_get_yearlist"
+        >
+        <action
+            android:id="@+id/action_map_fragment"
+            app:destination="@id/map_fragment"
+            app:launchSingleTop="true"
+            >
+            <argument
+                android:name="list"
+                app:argType="string"
+                />
+
+            <argument
+                android:name="location_label"
+                app:argType="string"
+                />
+
+        </action>
+    </fragment>
+
+</navigation>

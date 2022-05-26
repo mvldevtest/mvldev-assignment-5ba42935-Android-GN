@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="colorstatus">#BF3B4D</color>
+
+    <color name="colorLoginBg">#F93562</color>
+    <color name="negColor">@android:color/darker_gray</color>
+    <color name="alertDialogNegativeButtonColor">#808080</color>
+    <color name="white">@android:color/white</color>
+    <color name="color_white">#ffffff</color>
+    <color name="light_grey">#808080</color>
+    <color name="grey900">#212121</color>
+    <color name="grey800">#424242</color>
+    <color name="grey400">#BDBDBD</color>
+    <color name="grey300">#E0E0E0</color>
+    <color name="grey100">#F5F5F5</color>
+    <color name="grey500">#9E9E9E</color>
+    <color name="black">#000000</color>
+    <color name="blue">#2680EB</color>
+    <color name="hash">#E3E3E3</color>
+    <color name="green">#23CC67</color>
+</resources>
